@@ -14,7 +14,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <style>
-    html, body{
+    html,
+    body {
       height: 100%;
     }
 
@@ -25,6 +26,7 @@
       align-items: center;
       padding-top: 40px;
       padding-bottom: 40px;
+      padding-left: 35%;
       background-color: #f5f5f5;
     }
 
@@ -38,16 +40,35 @@
 </head>
 
 <body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 08/08/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
+  <form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Bienvenido a eMercado</font>
+      </font>
+    </h1>
+    <label for="inputEmail" class="sr-only">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Ingrese usuario</font>
+      </font>
+    </label>
+    <input id="IdUsuario" class="form-control" placeholder="Ingrese usuario" required="" autofocus="">
+
+    <label for="inputPassword" class="sr-only">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Clave</font>
+      </font>
+    </label>
+    <input type="password" id="IdPass" class="form-control" placeholder="Clave" required="">
+
+    <button id="btnIngreso" class="btn btn-lg btn-primary btn-block" type="button" value="Ingresar">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Ingresar</font>
+      </font>
+    </button>
+  </form>
 
   <script src="js/init.js"></script>
   <script src="js/login.js"></script>
 </body>
+
 </html>
