@@ -3,7 +3,6 @@
 //elementos HTML presentes.
 
 
-//CODIGO DE CATEGORYYY
 var productos = {};
 
 function showImagesGallery(arrayprod) {
@@ -25,13 +24,9 @@ function showImagesGallery(arrayprod) {
     }
 }
 
-//FIIINN   CODIGO DE CATEGORYYY
-
-
 document.addEventListener("DOMContentLoaded", function (e) {
 
 
-    // codigo category
     getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             productos = resultObj.data;
@@ -53,14 +48,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
             productoRela.innerHTML = productos.relatedProducts;
 
 
-
-
             //Muestro las imagenes en forma de galería
             showImagesGallery(productos.images);
         }
     });
 
-    //FINN CODIGOO CATEGORYY
 });
 
 
