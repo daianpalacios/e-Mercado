@@ -33,13 +33,15 @@ function MostrarComentarios(array) {
 
         contenidoHTML += `
             <div class="row list-group-item list-group-item-action">
-                <div class="col-3">
-                </div>
                 <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">`+ comentario.score +`</h4> 
+                    <div class="d-flex w-100 justify-content-between">`
 
-                    </div>
+        for (let i = 1; i <= 5; i++) {
+            contenidoHTML += `<h4 class="mb-1">` + comentario.score + `</h4> `
+            contenidoHTML += `<span class="fa fa-star"></span>`
+        }
+
+        contenidoHTML += `</div>
                     <p class="mb-1">` + comentario.description + `</p>
                     <p class="mb-1">` + comentario.user + `</p>
                     <small class="text-muted">` + comentario.dateTime + ` </small>
