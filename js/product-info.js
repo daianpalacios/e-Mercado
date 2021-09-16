@@ -4,6 +4,7 @@
 
 
 var productos = {};
+var comentarios = {};
 
 function showImagesGallery(arrayprod) {
 
@@ -23,6 +24,34 @@ function showImagesGallery(arrayprod) {
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
 }
+
+function MostrarComentarios(array) {
+    let contenidoHTML = "";
+
+    for (let pos = 0; pos < array.length; pos++) {
+        let comentario = array[pos];
+
+        contenidoHTML += `
+            <div class="row list-group-item list-group-item-action">
+                <div class="col-3">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">`+ comentario.score +`</h4> 
+
+                    </div>
+                    <p class="mb-1">` + comentario.description + `</p>
+                    <p class="mb-1">` + comentario.user + `</p>
+                    <small class="text-muted">` + comentario.dateTime + ` </small>
+
+                </div>
+            </div>
+        `
+        document.getElementById("list-comentarios").innerHTML = contenidoHTML;
+    }
+}
+
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -50,6 +79,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(productos.images);
+        }
+    });
+
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            comentarios = resultObj.data;
+
+            MostrarComentarios(comentarios);
         }
     });
 
