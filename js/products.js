@@ -22,8 +22,12 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
     var ordenar = productos.sort(SortArray);//ordena ascendente segun costo.
     if (orden == "MinOrden") {
         elementos = ordenar;
-    } else if (orden == "MaxOrden") {
+    } else if (orden == "rele") {
         elementos = productos.sort(SortRelevante).reverse(); // Ordena por relevancia.
+    }else {
+        elementos = productos.sort(SortArray).reverse(); //ordena decendente segun costo.
+        //( ESTA PARTE ME FALTO EN LA ENTREGA 2 POR QUE NO COMPRENDI BIEN LA LETRA EN SU MOMENTO).
+
     }
 
     // Se recorre el array de productos
@@ -50,8 +54,9 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
                 var nombre = document.createElement('h4');
                 var P = document.createElement('p');
                 var DivItem = document.createElement('div');
+                var A = document.createElement('a');
                 //agrego las clases...
-                DivItem.classList.add('list-group-item', 'list-group-item-action');
+               // DivItem.classList.add('list-group-item', 'list-group-item-action');
                 Div1.classList.add('row');
                 Div2.classList.add('col-3');
                 IMG.classList.add('img-thumbnail');
@@ -59,6 +64,7 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
                 Div4.classList.add('d-flex', 'w-100', 'justify-content-between');
                 nombre.classList.add('mb-1');
                 P.classList.add('mb-1');
+                A.classList.add('list-group-item', 'list-group-item-action');
 
                 IMG.setAttribute("src", prod.imgSrc);// arega las imagenes
                 //cargo los datos en las vatiables
@@ -71,6 +77,8 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
                 P.appendChild(document.createElement("br"));// genera un enter
                 IMG.appendChild(document.createTextNode(`ImgScr: ${prod.imgSrc}`));
                 P.appendChild(document.createTextNode(`SoldCount: ${prod.soldCount}`));
+                A.setAttribute("href","product-info.html");
+                
                 //ubico cada div en su lugar
                 Div2.appendChild(IMG);
                 Div4.appendChild(nombre);
@@ -78,7 +86,8 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
                 Div3.appendChild(P);
                 Div1.appendChild(Div2);
                 Div1.appendChild(Div3);
-                DivItem.appendChild(Div1);
+                A.appendChild(Div1); // llamado a product-info.html
+                DivItem.appendChild(A);
 
                 contenedor.appendChild(DivItem);//cargo el listado total en la constante que 
                 //se mostrara en pantalla
@@ -122,10 +131,14 @@ document.addEventListener("DOMContentLoaded", async function (e) {
         if (document.getElementById('asc').checked) {
             orden = "MinOrden";
             showList(productos, minimo, maximo, orden, valorBusca);
-        } else {
+        } else if (document.getElementById('desc').checked) {
             orden = "MaxOrden";
             showList(productos, minimo, maximo, orden, valorBusca);
+        } else {
+            orden = "rele";
+            showList(productos, minimo, maximo, orden, valorBusca);
         }
+
     });
 
 
@@ -133,12 +146,30 @@ document.addEventListener("DOMContentLoaded", async function (e) {
         if (document.getElementById('desc').checked) {
             orden = "MaxOrden";
             showList(productos, minimo, maximo, orden, valorBusca);;
-        } else {
+        } else if (document.getElementById('asc').checked) {
             orden = "MinOrden";
             showList(productos, minimo, maximo, orden, valorBusca);
+        } else {
+            orden = "rele";
+            showList(productos, minimo, maximo, orden, valorBusca);
         }
+
     });
 
+
+    document.getElementById("rele").addEventListener("change", () => { //Clic para saber si estoy en relevante.
+        if (document.getElementById('desc').checked) {
+            orden = "MaxOrden";
+            showList(productos, minimo, maximo, orden, valorBusca);;
+        } else if (document.getElementById('asc').checked) {
+            orden = "MinOrden";
+            showList(productos, minimo, maximo, orden, valorBusca);
+        } else {
+            orden = "rele";
+            showList(productos, minimo, maximo, orden, valorBusca);
+        }
+
+    });
 
 
 });
