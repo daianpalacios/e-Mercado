@@ -34,11 +34,14 @@ function MostrarComentarios(array) {
         contenidoHTML += `
             <div class="row list-group-item list-group-item-action">
                 <div class="col">
-                    <div class="d-flex w-100 justify-content-between">`
+                    <div class="col-3">`
 
         for (let i = 1; i <= 5; i++) {
-            contenidoHTML += `<h4 class="mb-1">` + comentario.score + `</h4> `
-            contenidoHTML += `<span class="fa fa-star"></span>`
+            if (i <= comentario.score){ 
+            contenidoHTML += `<span class="fa fa-star checked"></span>`
+            }else{
+                contenidoHTML += `<span class="fa fa-star"></span>`
+            }
         }
 
         contenidoHTML += `</div>
