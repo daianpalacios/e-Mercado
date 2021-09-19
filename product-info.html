@@ -27,41 +27,41 @@
       <p class="font-weight-normal text-right my-2" style="background-color:#aaa" id="MostrarUsuario"></p>
     </div>
   </nav>
-  
+
   <div class="container p-5">
     <div class="row justify-content-end">
       <div class="col-md-6"></div>
-        <div class="col-md-6 col-sm-12 mb-1 container">
-          <div class="row container p-0 m-0">
-            <div class="col">
-              <p class="font-weight-normal text-right my-2">Cant.</p>
-            </div>
-            <div class="col">
-              <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
-            </div>
-            <div class="col">
-              <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
-            </div>
-            <div class="col-3 p-0">
-              <div class="btn-group" role="group">
-                <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
-              </div>
+      <div class="col-md-6 col-sm-12 mb-1 container">
+        <div class="row container p-0 m-0">
+          <div class="col">
+            <p class="font-weight-normal text-right my-2">Cant.</p>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+          </div>
+          <div class="col-3 p-0">
+            <div class="btn-group" role="group">
+              <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+              <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
             </div>
           </div>
         </div>
+      </div>
     </div>
 
 
 
 
     <main role="main">
-      <div class="container mt-5">
-        <div class="text-center p-4">
+      <div class="container mt-5 ">
+        <div class="text-center p-4 ">
           <h2>Descripción de producto</h2>
           <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
-          <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea el producto
-            seleccionado previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p>
+          <!-- <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea el producto
+            seleccionado previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p> -->
         </div>
         <h3 id="ProdName"></h3>
         <hr class="my-3">
@@ -70,12 +70,12 @@
           <dd>
             <p id="ProdDescription"></p>
           </dd>
-  
+
           <dt>Costo</dt>
           <dd>
             <p id="ProdCosto"></p>
           </dd>
-  
+
           <dt>Moneda</dt>
           <dd>
             <p id="ProdMoneda"></p>
@@ -95,7 +95,7 @@
           <dd>
             <p id="ProdRela"></p>
           </dd>
-  
+
           <dt>Imágenes ilustrativas</dt>
           <dd>
             <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
@@ -104,19 +104,59 @@
         </dl>
 
 
-        <div class="container">
-          <div class="row">
+        <div class="container ">
+          <!-- muestra los comentarios en pantalla -->
+          <div class="row col-md-12 mb-3">
             <div class="list-group" id="list-comentarios">
             </div>
           </div>
         </div>
 
+        <hr class="my-3">
 
+        <form>
+          <p class="clasificacion col-md-12 mb-3">
+            <input id="radio1" type="radio" name="estrellas" value="5">
+            <!--
+            --><label for="radio1" class="fa fa-star"></label>
+            <!--
+            --><input id="radio2" type="radio" name="estrellas" value="4">
+            <!--
+            --><label for="radio2" class="fa fa-star"></label>
+            <!--
+            --><input id="radio3" type="radio" name="estrellas" value="3">
+            <!--
+            --><label for="radio3" class="fa fa-star"></label>
+            <!--
+            --><input id="radio4" type="radio" name="estrellas" value="2">
+            <!--
+            --><label for="radio4" class="fa fa-star"></label>
+            <!--
+            --><input id="radio5" type="radio" name="estrellas" value="1">
+            <!--
+            --><label for="radio5" class="fa fa-star"></label>
+          </p>
+        </form>
+
+
+
+        <div class="col-md-12 mb-3">
+          <!-- ingresar comentario -->
+          <label for="productDescription">Comentario</label>
+          <textarea class="form-control" id="coment" rows="3"></textarea>
+          <br>
+          <a type="button" class="btn btn-primary btn-lg " style="float: right;">Ingresar</a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
         <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
       </div>
     </main>
-  
+
 
 
 
@@ -144,7 +184,7 @@
 
 
 
-  
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>

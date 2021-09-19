@@ -34,7 +34,7 @@ function MostrarComentarios(array) {
         contenidoHTML += `
             <div class="row list-group-item list-group-item-action">
                 <div class="col">
-                    <div class="col-3">`
+                    <div class="col">`
 
         for (let i = 1; i <= 5; i++) {
             if (i <= comentario.score){ 
