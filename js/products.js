@@ -37,8 +37,6 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
 
         var nombre = prod.name.toLowerCase(); // paso el nombre a minuscula
         var descripcion = prod.description.toLowerCase();
-        // estaEnNom = nombre.indexOf(valorBusca); // busco las letras ingresadas dentro de los nombres
-        // estaEnDesc = descripcion.indexOf(valorBusca); // busco las letras ingresadas dentro de la descripcion 
         estaEnNom = nombre.search(valorBusca); // busco las letras ingresadas dentro de los nombres
         estaEnDesc = descripcion.search(valorBusca); // busco las letras ingresadas dentro de la descripcion
 

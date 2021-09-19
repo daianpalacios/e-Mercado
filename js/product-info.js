@@ -20,7 +20,6 @@ function showImagesGallery(arrayprod) { // dibujo como quiero ver las imagenes e
             </div>
         </div>
         `
-
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
 }
@@ -33,8 +32,7 @@ function MostrarComentarios(array) {
         if (x.dateTime > y.dateTime) { return 1; }
         return 0;
     }
-    var ArrayOrdenado = array.sort(porFecha).reverse(); // desde el mas reciente a el mas antiguo
-
+    var ArrayOrdenado = array.sort(porFecha).reverse(); // desde el más reciente a el más antiguo
 
     let contenidoHTML = "";
 
@@ -68,6 +66,7 @@ function MostrarComentarios(array) {
 
 
 function agregarComentario(comentar, puntaje, descripcion, usuario, fecha) { // agrego comentario nuevo a el array existente
+    
     let contenido = { score: puntaje, description: descripcion, user: usuario, dateTime: fecha }
     comentar.push(contenido);
     console.log(comentar);
@@ -76,7 +75,7 @@ function agregarComentario(comentar, puntaje, descripcion, usuario, fecha) { // 
 
 document.addEventListener("DOMContentLoaded", async function (e) {
 
-    const comentar = (await getJSONData(PRODUCT_INFO_COMMENTS_URL)).data;
+    const comentar = (await getJSONData(PRODUCT_INFO_COMMENTS_URL)).data; 
 
     document.getElementById("btnComenta").addEventListener("click", () => { // Boton que ingresa nuevo comentario
         let score = "";
@@ -91,12 +90,8 @@ document.addEventListener("DOMContentLoaded", async function (e) {
         min = n.getMinutes();
         s = n.getSeconds();
 
-
         //Le doy formato a la fecha 
         let dateTime = y+ "-0" + m + "-" + d +" "+ h +":"+ min +":"+ s;
-
-
-
 
         score = document.getElementsByName("estrellas"); // obtengo el valor de las estrellas seleccionadas al comentar
         for (var i = 0, length = score.length; i < length; i++) {
@@ -110,13 +105,11 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
 
 
-
-
-
-    getJSONData(PRODUCT_INFO_URL).then(function (resultObj) { // creo formato para mostrar comentarios
+    getJSONData(PRODUCT_INFO_URL).then(function (resultObj) { 
         if (resultObj.status === "ok") {
             productos = resultObj.data;
 
+            // creo formato para mostrar datos
             let productoNombre = document.getElementById("ProdName");
             let productoDescrip = document.getElementById("ProdDescription");
             let productoCosto = document.getElementById("ProdCosto");
