@@ -5,6 +5,7 @@
 const showList = (productos, minimo, maximo, orden, valorBusca) => {
     const contenedor = document.getElementById("listaProductos");
     var esta = 0;
+    valorBusca=valorBusca.toLowerCase(); // pasa a minuscula lo que se va a buscar 
     contenedor.innerHTML = "";
 
     function SortArray(x, y) { // Ordena costos
@@ -36,10 +37,13 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
 
         var nombre = prod.name.toLowerCase(); // paso el nombre a minuscula
         var descripcion = prod.description.toLowerCase();
-        estaEnNom = nombre.indexOf(valorBusca); // busco las letras ingresadas dentro de los nombres
-        estaEnDesc = descripcion.indexOf(valorBusca); // busco las letras ingresadas dentro de la descripcion 
+        // estaEnNom = nombre.indexOf(valorBusca); // busco las letras ingresadas dentro de los nombres
+        // estaEnDesc = descripcion.indexOf(valorBusca); // busco las letras ingresadas dentro de la descripcion 
+        estaEnNom = nombre.search(valorBusca); // busco las letras ingresadas dentro de los nombres
+        estaEnDesc = descripcion.search(valorBusca); // busco las letras ingresadas dentro de la descripcion
 
-        if (estaEnNom >= 0 || estaEnDesc >= 0 || valorBusca == "") { // muestra todo si pasa lo que dice el filtro
+
+        if (estaEnNom != -1 || estaEnDesc != -1 || valorBusca == "") { // muestra todo si pasa lo que dice el filtro
 
 
             if (prod.cost >= minimo && prod.cost <= maximo) { // Busco los valores que se encuentren entre los rangos ingresados
