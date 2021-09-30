@@ -66,7 +66,6 @@ function MostrarComentarios(array) {
 
 
 function agregarComentario(comentar, puntaje, descripcion, usuario, fecha) { // agrego comentario nuevo a el array existente
-    
     let contenido = { score: puntaje, description: descripcion, user: usuario, dateTime: fecha }
     comentar.push(contenido);
     console.log(comentar);
@@ -74,8 +73,8 @@ function agregarComentario(comentar, puntaje, descripcion, usuario, fecha) { // 
 }
 
 document.addEventListener("DOMContentLoaded", async function (e) {
-
     const comentar = (await getJSONData(PRODUCT_INFO_COMMENTS_URL)).data; 
+
 
     document.getElementById("btnComenta").addEventListener("click", () => { // Boton que ingresa nuevo comentario
         let score = "";
@@ -104,12 +103,11 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     });
 
 
-
-    getJSONData(PRODUCT_INFO_URL).then(function (resultObj) { 
+    getJSONData(PRODUCT_INFO_URL).then(function (resultObj) { // obtengo la info del producto
         if (resultObj.status === "ok") {
             productos = resultObj.data;
 
-            // creo formato para mostrar datos
+            // creo variables con los datos
             let productoNombre = document.getElementById("ProdName");
             let productoDescrip = document.getElementById("ProdDescription");
             let productoCosto = document.getElementById("ProdCosto");
@@ -118,6 +116,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
             let productoCategoria = document.getElementById("ProdCategoria");
             let productoRela = document.getElementById("ProdRela");
 
+            //imprimo en HTML los datos 
             productoNombre.innerHTML = productos.name;
             productoDescrip.innerHTML = productos.description;
             productoCosto.innerHTML = productos.cost;

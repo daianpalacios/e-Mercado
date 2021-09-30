@@ -43,7 +43,6 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
 
         if (estaEnNom != -1 || estaEnDesc != -1 || valorBusca == "") { // muestra todo si pasa lo que dice el filtro
 
-
             if (prod.cost >= minimo && prod.cost <= maximo) { // Busco los valores que se encuentren entre los rangos ingresados
 
 
@@ -56,7 +55,7 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
                 var nombre = document.createElement('h4');
                 var P = document.createElement('p');
                 var DivItem = document.createElement('div');
-                var A = document.createElement('a');
+                var A = document.createElement('a'); // comentarios
                 //agrego las clases...
                // DivItem.classList.add('list-group-item', 'list-group-item-action');
                 Div1.classList.add('row');
@@ -79,7 +78,7 @@ const showList = (productos, minimo, maximo, orden, valorBusca) => {
                 P.appendChild(document.createElement("br"));// genera un enter
                 IMG.appendChild(document.createTextNode(`ImgScr: ${prod.imgSrc}`));
                 P.appendChild(document.createTextNode(`SoldCount: ${prod.soldCount}`));
-                A.setAttribute("href","product-info.html");
+                A.setAttribute("href","product-info.html"); 
                 
                 //ubico cada div en su lugar
                 Div2.appendChild(IMG);
