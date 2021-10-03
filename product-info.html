@@ -103,14 +103,12 @@
             <p id="ProdCategoria"></p>
           </dd>
 
-          <dt>Productos relacionados</dt>
-          <dd>
-            <p id="ProdRela"></p>
-          </dd>
 
-          <dt>Imágenes ilustrativas</dt>
+          <dt>Imágenes ilustrativas</dt> <!-- carrusel de imagenes -->
           <dd>
-            <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+            <div id="carouselExampleControls" class="carousel slide w-50 " data-ride="carousel">
+              <div class="carousel-inner" id="productImagesGallery">
+            </div>
             </div>
           </dd>
         </dl>
@@ -152,6 +150,14 @@
         <br>
         <br>
         <br>
+        
+      <dl>
+        <dt>Productos relacionados</dt> <!-- muestra imagenes, costo y nombre -->
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="productRelatedImage">
+          </div>
+        </dd>
+      </dl>
 
         <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
       </div>
@@ -181,6 +187,7 @@
 
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/security.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
 </body>

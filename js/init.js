@@ -44,12 +44,11 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  var getlocal = localStorage.getItem("Login");
-  if(getlocal == null || getlocal == "" || getlocal == false || getlocal == undefined){ 
+  let getlocal = localStorage.getItem("Login");
+  if(getlocal == null || getlocal == "" || getlocal == false || getlocal == undefined ){ 
     window.location = "login.html";
   }else if(getlocal != "entrando"){
-    const MostUsu = document.getElementById("MostrarUsuario");    
-    //MostUsu.innerText = JSON.stringify(JSON.parse(getlocal),["usuario"]);
+    const MostUsu = document.getElementById("MostrarUsuario");
 
     MostUsu.innerHTML = "Usuario: " + getlocal; // muestra el usuario en pantalla 
         

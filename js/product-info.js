@@ -6,23 +6,76 @@
 var productos = {};
 var comentarios = {};
 
-function showImagesGallery(arrayprod) { // dibujo como quiero ver las imagenes en pantalla
+
+
+function showRelatedProducts(arrayRelatedP, allProducts) { // productos relacionados
+    let htmlContentToAppend = "";
+    for (let i = 0; i < arrayRelatedP.length; i++) {
+        let relatedProducts = arrayRelatedP[i];
+
+        let imageRelated = allProducts[relatedProducts].imgSrc;
+
+        htmlContentToAppend += `
+             
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="d-block mb-4 h-100">
+                <a class="list-group-item list-group-item-action" href="product-info.html">
+                    <img class="img-fluid" style="border: 1px solid #dee2e6; border-radius: .25rem;" src="` + imageRelated + `" alt="">
+                    <div class="row">
+                    <p class="font-weight-bold mb-1" style="padding-left: 15px;">U$S `+ allProducts[relatedProducts].cost + `</p>
+                    </div>  
+                     <div class="row">
+                    <p style="padding-left: 15px;">`+ allProducts[relatedProducts].name + `</p>
+                    </div>    
+                </a>
+                </div>
+            </div>
+            
+            `
+        document.getElementById("productRelatedImage").innerHTML = htmlContentToAppend;
+
+    }
+}
+
+
+
+function showImagesGallery(arrayprod) { // dibujo como quiero ver las imagenes en pantalla y se agrega carrusel
 
     let htmlContentToAppend = "";
 
     for (let i = 0; i < arrayprod.length; i++) {
         let imageSrc = arrayprod[i];
 
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        if (i == 0) {
+            htmlContentToAppend += `    
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="` + imageSrc + `" alt="">
+            </div>    
+            `
+        } else {
+            htmlContentToAppend += `    
+            <div class="carousel-item ">
+                <img class="d-block w-100" src="` + imageSrc + `" alt="">
+            </div>    
+             `
+
+        }
     }
+   htmlContentToAppend+=` 
+   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+   </a>
+   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+   </a>` 
+   
+    document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+
 }
+
+
 
 
 function MostrarComentarios(array) {
@@ -38,7 +91,6 @@ function MostrarComentarios(array) {
 
     for (let pos = 0; pos < ArrayOrdenado.length; pos++) { // dibujo en pantalla con la info del array
         let comentario = ArrayOrdenado[pos];
-        console.log(comentario.user + "-" + comentario.dataTime);
         contenidoHTML += `
             <div class="row list-group-item list-group-item-action">
                 <div class="col">
@@ -73,7 +125,8 @@ function agregarComentario(comentar, puntaje, descripcion, usuario, fecha) { // 
 }
 
 document.addEventListener("DOMContentLoaded", async function (e) {
-    const comentar = (await getJSONData(PRODUCT_INFO_COMMENTS_URL)).data; 
+    const comentar = (await getJSONData(PRODUCT_INFO_COMMENTS_URL)).data;
+    const allProducts = (await getJSONData(PRODUCTS_URL)).data;// lista de los productos
 
 
     document.getElementById("btnComenta").addEventListener("click", () => { // Boton que ingresa nuevo comentario
@@ -84,13 +137,13 @@ document.addEventListener("DOMContentLoaded", async function (e) {
         n = new Date();
         y = n.getFullYear();
         m = n.getMonth() + 1;
-        d = n.getDate();        
+        d = n.getDate();
         h = n.getHours();
         min = n.getMinutes();
         s = n.getSeconds();
 
         //Le doy formato a la fecha 
-        let dateTime = y+ "-0" + m + "-" + d +" "+ h +":"+ min +":"+ s;
+        let dateTime = y + "-0" + m + "-" + d + " " + h + ":" + min + ":" + s;
 
         score = document.getElementsByName("estrellas"); // obtengo el valor de las estrellas seleccionadas al comentar
         for (var i = 0, length = score.length; i < length; i++) {
@@ -114,7 +167,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
             let productoMoneda = document.getElementById("ProdMoneda");
             let productosoldCount = document.getElementById("ProdSoldCount");
             let productoCategoria = document.getElementById("ProdCategoria");
-            let productoRela = document.getElementById("ProdRela");
+            // let productoRela = document.getElementById("ProdRela");
 
             //imprimo en HTML los datos 
             productoNombre.innerHTML = productos.name;
@@ -123,11 +176,13 @@ document.addEventListener("DOMContentLoaded", async function (e) {
             productoMoneda.innerHTML = productos.currency;
             productosoldCount.innerHTML = productos.soldCount;
             productoCategoria.innerHTML = productos.category;
-            productoRela.innerHTML = productos.relatedProducts;
+            //productoRela.innerHTML = productos.relatedProducts;
 
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(productos.images);
+            //Obtengo productos relacionados y todos los productos
+            showRelatedProducts(productos.relatedProducts, allProducts);
         }
     });
 
