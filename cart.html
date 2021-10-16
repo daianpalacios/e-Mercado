@@ -40,12 +40,10 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <!-- <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a> -->
-      <!-- <p class="font-weight-normal text-right my-2" style="background-color:#aaa" id="MostrarUsuario"></p> -->
-    
 
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="MostrarUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="MostrarUsuario" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           Dropdown button
         </button>
         <div class="dropdown-menu" aria-labelledby="MostrarUsuario">
@@ -58,14 +56,39 @@
 
     </div>
   </nav>
-  <div class="container p-5">
+  <!-- <div class="container p-5" id="prueba">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
+  </div> -->
+  <div class="container">
+    <div id="cartName"></div>
+    <div id="cartCount"></div>
+    <div id="cartUnitCost"></div>
+    <div id="cartCurrency"></div>
+    <div id="cartSrc"></div>
   </div>
+
+  <div class="container">
+    <div class="row">
+        <!-- Elementos generados a partir del JSON -->
+        <main id="items" class="row"></main>
+        <!-- Carrito -->
+        <aside class="col-sm-4">
+            <h2>Carrito</h2>
+            <!-- Elementos del carrito -->
+            <ul id="cartContent" class="list-group"></ul>
+            <hr>
+            <!-- Precio total -->
+            <p class="text-right">Total: <span id="total"></span>&euro;</p>
+            <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+        </aside>
+    </div>
+</div>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -74,13 +97,15 @@
       <div></div>
     </div>
   </div>
+
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/security.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
-  
+
 </body>
 
 </html>
