@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="955362830768-tqfoaksnn4sutej5h2hp5dgodrun9gqf.apps.googleusercontent.com">
+  <!-- <meta name="google-signin-client_id" content="924720782268-he6gdlsa7bbt2sei0n1an8le7gk8dgau.apps.googleusercontent.com"> -->
+    <!-- <meta name="google-signin-client_id"
+    content="491293186414-4rms7uft8es2s2qofk1lgdio0kcjn6rl.apps.googleusercontent.com"> -->
+
+  <title>eMercado - Todo lo que busques está aquí</title>
+<!--Script de GOOGLE-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      padding-left: 35%;
+      background-color: #f5f5f5;
+    }
+
+    .signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body class="text-center">
+  <form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Bienvenido a eMercado</font>
+      </font>
+    </h1>
+    <label for="inputEmail" class="sr-only">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Ingrese usuario</font>
+      </font>
+    </label>
+    <input id="IdUsuario" class="form-control" placeholder="Ingrese usuario" required="" autofocus="">
+
+    <label for="inputPassword" class="sr-only">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Clave</font>
+      </font>
+    </label>
+    <input type="password" id="IdPass" class="form-control" placeholder="Clave" required="">
+
+    <button id="btnIngreso" class="btn btn-lg btn-primary btn-block" type="button" value="Ingresar">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Ingresar</font>
+      </font>
+    </button>
+
+    <div>
+      <div id="gSignIn">
+
+      </div>
+
+      <!-- Al ingresar se muestran detalles sobre el usuario -->
+      <div class="userContent" style="display: none;"></div>
+    </div>
+    
+    <!-- luis -->
+    <div class="login-google">
+      <div class="g-signin2" data-onsuccess="onSignIn" style="height: 50px;width: 150px;padding-top: 7px;"></div>
+    </div>
+
+  </form>
+
+
+
+
+
+  <script src="js/init.js"></script>
+  <script src="js/login.js"></script>
+
+  <!--AUTENTICACIÓN DE GOOGLE-->
+  <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
+  <script src="http://apis.google.com/js/platform.js" async defer gapi_processed="true"></script>
+  
+  <!--Se incluye la biblioteca de API de Google, esto crea el objeto "gapi" a usar en google.js-->
+  <script src="js/google.js"></script>
+
+</body>
+
+</html>

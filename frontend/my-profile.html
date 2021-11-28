@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/dropzone.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="site-header sticky-top py-1 bg-dark">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+      <!-- <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a> -->
+      <!-- <p class="font-weight-normal text-right my-2" style="background-color:#aaa" id="MostrarUsuario"></p> -->
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="MostrarUsuario" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="MostrarUsuario">
+          <a class="dropdown-item" href="my-profile.html">Perfil</a>
+          <a class="dropdown-item" href="cart.html">Mi carrito</a>
+          <a class="dropdown-item" href="login.html">Cerrar sesión</a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+  <!-- <div class="container p-5">
+    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
+      <h4 class="alert-heading">¡A trabajar! :)</h4>
+      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
+      <hr>
+      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    </div>
+  </div> -->
+  <div class="container">
+    <div class="page-content page-container" id="page-content">
+      <div class="padding">
+        <div class="row container d-flex justify-content-center">
+          <div class="col-xl-9 col-md-12">
+
+
+
+            <!-- ************* MAIN CARD ************* -->
+            <div id="main_card" class="card user-card-full" style="display: block;">
+              <div class="row m-l-0 m-r-0">
+                <div class="col-sm-4 bg-c-lite-green user-profile">
+                  <div class="card-block text-center text-white">
+                    <div class="m-b-25"> <img id="imgProfile" src="" class="img-radius" alt="User-Profile-Image"> </div>
+                    <h6 class="f-w-600" id='h6name'>Mi Nombre</h6>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="card-block">
+                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h6>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Edad</p>
+                        <h6 class="text-muted f-w-400" id="h6age">0</h6>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Email</p>
+                        <h6 class="text-muted f-w-400" id="h6email"></h6>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Phone</p>
+                        <h6 class="text-muted f-w-400" id="h6phone"></h6>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <button id="update_profile" style="display: block;"
+                          class="btn btn-outline-primary float-right">Editar Perfil <i
+                            class='fas fa-user-edit'></i></button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ************* EDIT CARD ************* -->
+            <div id="edit_card" class="card user-card-full" style="display: none;">
+
+              <form id="form_update" action="">
+                <div class="row m-l-0 m-r-0">
+                  <div class="col-sm-4 bg-c-lite-green user-profile">
+                    <div class="card-block text-center text-white">
+                      <div class="m-b-25"> <img id="imgProfile" src="https://img.icons8.com/bubbles/100/000000/user.png"
+                          class="img-radius" alt="User-Profile-Image"> </div>
+                      <h6 class="f-w-600" id='h6Name'>Mi Nombre</h6>
+                      <input type="text" name="name" id="name" class="f-w-600">
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="card-block">
+                      <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h6>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p class="m-b-10 f-w-600">Edad</p>
+                          <input type="number" name="age" id="age" class="f-w-600">
+                        </div>
+                        <div class="col-sm-6">
+                          <p class="m-b-10 f-w-600">Email</p>
+                          <input type="email" name="email" id="email" class="f-w-600">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p class="m-b-10 f-w-600">Phone</p>
+                          <input type="text" name="phone" id="phone" class="f-w-600">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col">
+                          <button type="submit" id="confirm_profile" style="display: block;"
+                            class="btn btn-outline-primary float-right">Confirmar <i
+                              class='fas fa-user-check'></i></button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="text-muted bg-light">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div class="alert fade alert-success" role="alert" id="alertResult">
+    <span id="resultSpan"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/dropzone.js"></script>
+  <script src="js/security.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/my-profile.js"></script>
+</body>
+
+</html>
