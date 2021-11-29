@@ -10,11 +10,7 @@ const btnIngreso = () => {
     const usuario = IdUsuario.value;
     const pass = IdPass.value;
     if (usuario && pass) {
-        // arr.push({
-        //     usuario,
-        //     pass,
-        // });
-        let arr=usuario; //Cargo el valor de usuario en el arr para mostrarlo luego en pantalla
+
         let profile_info= {
             name: usuario,
             age: '0',
@@ -22,7 +18,7 @@ const btnIngreso = () => {
             phone: '',
             image: 'https://i.ibb.co/YPbhWXZ/user.png' //DESAFIATE 6
         }
-        // localStorage.setItem("Login", arr);
+        
        localStorage.setItem("Login", JSON.stringify(profile_info));
         window.location = "index.html";
 
