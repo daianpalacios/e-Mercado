@@ -7,11 +7,33 @@ let SubTotalFinal = 0;//ENTREGA 7
 
 const showCart = (productCart) => {
 
+    let cartContent = document.getElementById("cartContent");
     let total = document.getElementById('total');
     let subTotal = document.getElementById('sub_total');
     let totalEnvio = document.getElementById('envio_final'); //ENTREGA 7
     let porcentajeEnvio = document.getElementsByName('TipoEnvio');//ENTREGA 7
     let auxTotal = 0;
+
+    cartContent.innerHTML = '<div id="tableHead" class="row">'+
+    '                           <div class="col-5">'+
+    '                               Producto'+
+    '                           </div>'+
+    '                           <div class="col">'+
+    '                               Cantidad'+
+    '                           </div>'+
+    '                           <div class="col">'+
+    '                               Moneda'+
+    '                           </div>'+
+    '                           <div class="col">'+
+    '                               Precio Unitario'+
+    '                           </div>'+
+    '                           <div class="col-2">'+
+    '                               C.Cantidad $UY'+
+    '                           </div>'+
+    '                           <div class="col">'+
+    '                               '+
+    '                           </div>'+
+    '                       </div>';
 
     totalEnvio = 0;
 
@@ -23,7 +45,6 @@ const showCart = (productCart) => {
         unidad_SubTotal = TotalEnPesosUY(articles);
 
         // Creo variables para HTML
-        let cartContent = document.getElementById("cartContent");
         let colImg = document.createElement("div");
         let artImg = document.createElement('img');
         let colName = document.createElement("div");
@@ -38,6 +59,9 @@ const showCart = (productCart) => {
         let rowlinea = document.createElement("div");
         let linea = document.createElement("hr");
         let colgrupo = document.createElement("div");
+        let colTrash = document.createElement("div"); //DESAFIATE 7
+        let btnTrash = ""//DESAFIATE 7
+
 
         // Agrego las clases correspondientes
         colImg.classList.add('col-2');
@@ -50,10 +74,17 @@ const showCart = (productCart) => {
         artCount.setAttribute("id", "Cant_" + i)
         colCurrency.classList.add('col');
         colCost.classList.add('col');
-        colSubTot.classList.add('col-2', 'SubTot');
+        colTrash.classList.add('col','trash');
+        colTrash.setAttribute('id','colTrash'+ i);
+        colSubTot.classList.add('col', 'SubTot');
         colgrupo.classList.add('row', 'my-3', 'border', 'align-items-center');
         rowlinea.classList.add('row');
+        btnTrash = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">'+
+        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+        '</svg>';  //DESAFIATE 7
 
+       
         //cargo los datos en las variables
         artImg.appendChild(document.createTextNode(`${articles.src}`));
         artName.appendChild(document.createTextNode(`${articles.name}`));
@@ -76,13 +107,17 @@ const showCart = (productCart) => {
         colgrupo.appendChild(colCurrency);
         colgrupo.appendChild(colCost);
         colgrupo.appendChild(colSubTot);
+        colgrupo.appendChild(colTrash);
+
         cartContent.appendChild(colgrupo);
 
         auxTotal += TotalEnPesosUY(articles);
         // auxTotal += articles.unitCost * articles.count;
+       let Trash = document.getElementById('colTrash'+ i); //DESAFIATE 7
+       Trash.innerHTML = btnTrash;//DESAFIATE 7
     }
 
-//ENTREGA 7
+    //ENTREGA 7
     SubTotalFinal = auxTotal; // aca guardo el total del momento como subtotal para poder calcularle los porcentajes 
     subTotal.innerHTML = auxTotal;
 
@@ -102,6 +137,8 @@ const showCart = (productCart) => {
     total.innerHTML = SubTotalFinal + totalEnvio;
 
     plas(productCart);
+
+    deleteElement(productCart);
 
 
 
@@ -140,6 +177,24 @@ function plas(productCart) {
             SubTotalFinal = auxTotalAux;
 
             calcularEnvio()
+        });
+    }
+
+}
+
+//Funcion para eliminar un producto //DESAFIATE 7
+function deleteElement(productCart) {
+
+    let btnTrash = document.getElementsByClassName('trash');
+
+    for (let i = 0; i < btnTrash.length; i++) {
+        btnTrash[i].addEventListener("click", () => {
+            productCart.articles.splice(i, 1);
+            
+            let cartContent = document.getElementById("cartContent");
+            cartContent.innerHTML = "";
+            showCart(productCart);
+            
         });
     }
 
@@ -198,7 +253,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     tblTransfBancaria.style.display = "none";
 
     showCart(productCart);
-    
+
     //ENTREGA 7
 
     document.getElementById("Premium").addEventListener("change", () => {
@@ -239,7 +294,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
         let ok = false;
 
         let tipoEnvio = "";
-        let modoPago = ""; 
+        let modoPago = "";
         let TotalesSubTotal = document.getElementById("sub_total");
         let TotalesEnvio = document.getElementById("envio_final");
         let TotalesTotal = document.getElementById("total");
@@ -264,9 +319,9 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                 alert("Debe completar todos los campos del credito");
             } else {
                 okFormaDePago = true;
-                modoPago="Credito";
+                modoPago = "Credito";
                 document.getElementById("btnConfirmModal").setAttribute('data-dismiss', 'modal');
-                
+
             }
 
 
@@ -278,7 +333,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                 alert("Debe completar todos los campos de la transferencia");
             } else {
                 okFormaDePago = true;
-                modoPago="Transferencia Bancaria";
+                modoPago = "Transferencia Bancaria";
                 document.getElementById("btnConfirmModal").setAttribute('data-dismiss', 'modal');
             }
 
@@ -286,65 +341,67 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
         //chequeo cual esta seleccionado y si la direccion y el pais estan vacios
         if (document.getElementById('Premium').checked) {
-            ok=true;
-            tipoEnvio="Premium";
+            ok = true;
+            tipoEnvio = "Premium";
         }
-        
+
         if (document.getElementById('Express').checked) {
-            ok=true;
-            tipoEnvio="Express";
+            ok = true;
+            tipoEnvio = "Express";
         }
-        
+
         if (document.getElementById('Standar').checked) {
-            ok=true;
-            tipoEnvio="Standar";
+            ok = true;
+            tipoEnvio = "Standar";
         }
-        
+
         if (direccion.value == null || direccion.value == "") {
-            ok=false;
+            ok = false;
         }
-        
-        if (pais.value == null || pais.value == "" ) {
-            ok=false;
+
+        if (pais.value == null || pais.value == "") {
+            ok = false;
         }
-        if(ok == false || okFormaDePago == false){
-            if (ok == false){ 
-            alert("Deben completarse los campos de envio");
+        if (ok == false || okFormaDePago == false) {
+            if (ok == false) {
+                alert("Deben completarse los campos de envio");
             }
-        }else{
+        } else {
             alert("Venta realizada con exito!");
 
+
+            //DESAFIATE 8
             let saleFile = { // Nuevo Array con toda la info a guardar en TXT
-                "Productos" :[
+                "Productos": [
                     {
                         "ProductosJS": `${JSON.stringify(productCart)}`
                     }
                 ],
-                "Envio" :[
+                "Envio": [
                     {
-                        "Direccion" :`${direccion.value}`,
-                        "Pais":`${pais.value}`,
-                        "Tipo":`${tipoEnvio}`
+                        "Direccion": `${direccion.value}`,
+                        "Pais": `${pais.value}`,
+                        "Tipo": `${tipoEnvio}`
                     }
                 ],
-                "Pago" :[
+                "Pago": [
                     {
-                        "Modo de pago" :`${modoPago}`,
-                        "Nombre":`${creditNombre.value}`,
-                        "Numero tarjeta":`${creditNumTarjeta.value}`,
-                        "Exp Mes":`${creditExpiraMM.value}`,
-                        "Exp Año":`${creditExpiraDD.value}`,
-                        "CVC":`${creditCVC.value}`,
-                        "Banco" :`${transfBanco.value}`,
-                        "Cuenta":`${transfCuenta.value}`,
-                        "Titular":`${transfTitular.value}`
+                        "Modo de pago": `${modoPago}`,
+                        "Nombre": `${creditNombre.value}`,
+                        "Numero tarjeta": `${creditNumTarjeta.value}`,
+                        "Exp Mes": `${creditExpiraMM.value}`,
+                        "Exp Año": `${creditExpiraDD.value}`,
+                        "CVC": `${creditCVC.value}`,
+                        "Banco": `${transfBanco.value}`,
+                        "Cuenta": `${transfCuenta.value}`,
+                        "Titular": `${transfTitular.value}`
                     }
                 ],
-                "Totales" :[
+                "Totales": [
                     {
-                        "Sub Total" :`${TotalesSubTotal.textContent}`,
-                        "Envio":`${TotalesEnvio.textContent}`,
-                        "Total":`${TotalesTotal.textContent}`
+                        "Sub Total": `${TotalesSubTotal.textContent}`,
+                        "Envio": `${TotalesEnvio.textContent}`,
+                        "Total": `${TotalesTotal.textContent}`
                     }
                 ],
             }
@@ -353,21 +410,19 @@ document.addEventListener("DOMContentLoaded", async function (e) {
             fetch("http://localhost:3000/buyCart", { // Fetch de localhost para usar app.js
                 method: "POST",
                 headers: {
-                  'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(saleFile)
             })
 
-
-
-
-
         }
-
-
 
     });
 
-   
+
+    //DESAFIATE 7
+    
+
+
 
 });

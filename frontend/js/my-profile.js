@@ -3,7 +3,7 @@
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
 
-    let profile_info = JSON.parse(localStorage.getItem('Login'))
+    let profile_info = JSON.parse(localStorage.getItem('Login'))//DESAFIATE 6
     let name = document.getElementById('h6name');
     let age = document.getElementById('h6age');
     let email = document.getElementById('h6email');
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let edit_email = document.getElementById('email')
     let edit_phone = document.getElementById('phone')
 
-    console.log(profile_info)
     name.innerHTML = profile_info.name;
     if (age == undefined || age == 0 || age == null) {
         age.innerHTML = 0;
@@ -26,8 +25,37 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
     email.innerHTML = profile_info.email;
     phone.innerHTML = profile_info.phone;
-    img.setAttribute("src", profile_info.image);
+    img.setAttribute("src", profile_info.image); //DESAFIATE 6
 
+
+
+    //DESAFIATE 6 - INICIO
+    //Almacenamiento de la imagen en el local storage
+
+    let imgCanvas = document.createElement("canvas");
+    let imgContext = imgCanvas.getContext("2d");
+
+    //Igualo ancho y altura
+    imgCanvas.width = img.width;
+    imgCanvas.height = img.height;
+
+    imgContext.drawImage(img, 0, 0, img.width, img.height);
+
+    // Obtengo contenido canvas como HTML
+    let imgAsDataURL = imgCanvas.toDataURL("image/png");
+
+    //Guardo imagen en local storage
+    try {
+        localStorage.setItem("imgProfile", imgAsDataURL);
+    }
+    catch (e) {
+        console.log("Storage failed: " + e);
+    }
+
+    //sustituyo el contenido por la imagen almacenada en el localstorage
+    document.getElementById("imgProfile").innerHTML = `<center> <img class="user-profile" src=${localStorage.getItem("imgProfile")} alt="User icon" border="0"></center>`
+
+    //DESAFIATE 6 - FIN
 
 
 

@@ -20,7 +20,7 @@ const btnIngreso = () => {
             age: '0',
             email: '',
             phone: '',
-            image: 'https://img.icons8.com/bubbles/100/000000/user.png'
+            image: 'https://i.ibb.co/YPbhWXZ/user.png' //DESAFIATE 6
         }
         // localStorage.setItem("Login", arr);
        localStorage.setItem("Login", JSON.stringify(profile_info));

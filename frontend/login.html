@@ -6,15 +6,10 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="google-signin-scope" content="profile email">
-  <!-- <meta name="google-signin-client_id" content="955362830768-tqfoaksnn4sutej5h2hp5dgodrun9gqf.apps.googleusercontent.com"> -->
+  <!-- <meta name="google-signin-scope" content="profile email"> -->
   <meta name="google-signin-client_id" content="924720782268-he6gdlsa7bbt2sei0n1an8le7gk8dgau.apps.googleusercontent.com">
-    <!-- <meta name="google-signin-client_id"
-    content="491293186414-4rms7uft8es2s2qofk1lgdio0kcjn6rl.apps.googleusercontent.com"> -->
-
+ 
   <title>eMercado - Todo lo que busques está aquí</title>
-<!--Script de GOOGLE-->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
@@ -74,19 +69,20 @@
       </font>
     </button>
 
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <div>
-      <div id="gSignIn">
+      <!-- <div id="gSignIn">
 
-      </div>
+      </div> -->
 
       <!-- Al ingresar se muestran detalles sobre el usuario -->
-      <div class="userContent" style="display: none;"></div>
-    </div>
+      <!-- <div class="userContent" style="display: none;"></div>
+    </div> -->
     
     <!-- luis -->
-    <div class="login-google">
+    <!-- <div class="login-google">
       <div class="g-signin2" data-onsuccess="onSignIn" style="height: 50px;width: 150px;padding-top: 7px;"></div>
-    </div>
+    </div> -->
 
   </form>
 
@@ -98,8 +94,9 @@
   <script src="js/login.js"></script>
 
   <!--AUTENTICACIÓN DE GOOGLE-->
-  <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
-  <script src="http://apis.google.com/js/platform.js" async defer gapi_processed="true"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
+  <script src="http://apis.google.com/js/platform.js" async defer gapi_processed="true"></script> -->
   
   <!--Se incluye la biblioteca de API de Google, esto crea el objeto "gapi" a usar en google.js-->
   <script src="js/google.js"></script>
