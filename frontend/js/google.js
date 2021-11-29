@@ -21,30 +21,38 @@ function onSuccess(googleUser) { //Función de devolución de llamada una vez qu
             'userId': 'me'
         });
         request.execute(function (resp) {
-            var profileHTML = '<h3>Bienvenido/a ' + resp.given_name + '!</h3>';
-            profileHTML += '<p style="color:red">¡Presiona ingresar!</p>' + '<img src="' + resp.picture + '"/><p><b>Nombre: </b></p><p>' + resp.name + '</p><p><b>Correo electrónico:</b></p><p>' + resp.email + '</p> <a href="javascript:void(0);" onclick="signOut();">Cerrar sesión</a><p>';
+            // var profileHTML = '<h3>Bienvenido/a ' + resp.given_name + '!</h3>';
+            // profileHTML += '<p style="color:red">¡Presiona ingresar!</p>' + '<img src="' + resp.picture + '"/><p><b>Nombre: </b></p><p>' + resp.name + '</p><p><b>Correo electrónico:</b></p><p>' + resp.email + '</p> <a href="javascript:void(0);" onclick="signOut();">Cerrar sesión</a><p>';
            
-            localStorage.setItem('Guser',  resp.name);  //Almaceno como datos de sesión el nombre y email, se emplean para verificar el ingreso en verification.js
-            localStorage.setItem('Gmail', resp.email); 
-
-            document.getElementsByClassName("userContent")[0].innerHTML = profileHTML;
+            localStorage.setItem('google_user',  resp.name);  //Almaceno como datos de sesión el nombre y email, se emplean para verificar el ingreso en verification.js
+            localStorage.setItem('google_mail', resp.email); 
+            let profile_info= {
+                name: resp.name,
+                age: '0',
+                email: resp.email,
+                phone: '',
+                image: 'https://i.ibb.co/YPbhWXZ/user.png' //DESAFIATE 6
+            }
+           localStorage.setItem("Login", JSON.stringify(profile_info));           
+            window.location = "index.html";
+            // document.getElementsByClassName("userContent")[0].innerHTML = profileHTML;
             document.getElementById("gSignIn").style.display = "none";
-            document.getElementsByClassName("userContent")[0].style.display = "block";
+            // document.getElementsByClassName("userContent")[0].style.display = "block";
         });
     });
 }
 
 //Función llamada en el ingreso cuando no se logra iniciar correctamente
 function onFailure(error) {
-    alert("Hubo un error, intente nuevamente.\n Recuerde que sólo puede iniciar sesión con Google en la web: https://noeliaor.github.io/Mi-eMercado/");
+    alert("Hubo un error, intente nuevamente.\n");
 }
 
 //Cierra la sesión del usuario en la cuenta de Google.
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-        document.getElementsByClassName("userContent")[0].innerHTML = '';
-        document.getElementsByClassName("userContent")[0].style.display = "none";
+        // document.getElementsByClassName("userContent")[0].innerHTML = '';
+        // document.getElementsByClassName("userContent")[0].style.display = "none";
         document.getElementById("gSignIn").style.display = "block";
        localStorage.clear();
     });
